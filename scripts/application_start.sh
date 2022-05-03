@@ -13,11 +13,13 @@ cd /home/ec2-user/express-app
 curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
 sudo yum install -y nodejs
 sudo yum -y install gcc-c++ make
-sudo yum -y install nginx
+amazon-linux-extras install nginx1.12
+mv /etc/nginx /etc/nginx-backup
 
 #install node modules
 # nvm install node
 npm install
+sudo systemctl start nginx
 
 #start our node app in the background
 node app.js > app.out.log 2> app.err.log < /dev/null & 
